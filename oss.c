@@ -25,7 +25,7 @@ void print_usage (const char* argmt){
 	fprintf(stderr, "	proc is the number of user processes to launch\n");
 	fprintf(stderr, "	simul is the number of processes that can run simultaneously\n");
 	fprintf(stderr, "	iter is the number to be passed to the user processes\n");
-	fprintf(stderr, "Default proc is 9, default simul is 2, default iter is 3.\n");
+	fprintf(stderr, "Default proc is 9, default simul is 3, default iter is 5.\n");
 }
 
 void proc_exit(){
@@ -46,8 +46,8 @@ int main (int argc, char *argv[]){
     options_t options;
 
     options.proc = 9;
-    options.simul = 2;
-    options.iter = 3;
+    options.simul = 3;
+    options.iter = 5;
 	
 	opterr = 0;
 
@@ -90,7 +90,7 @@ int main (int argc, char *argv[]){
             newargv[1] = iterBuf;
             newargv[2] = NULL;
             execvp("./user",newargv);
-            exit(EXIT_SUCCESS);
+            _exit(EXIT_SUCCESS);
         } else {
         	counter++;
         	total_launched++;
@@ -99,6 +99,7 @@ int main (int argc, char *argv[]){
 	
 	while (counter > 0) {
 		counter--;
+		printf("Waiting\n");
 		wait(NULL);
 	}
 
