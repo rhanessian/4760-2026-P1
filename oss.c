@@ -79,7 +79,7 @@ int main (int argc, char *argv[]){
         }
 		userpid = fork();
 		if (userpid < 0){
-			perror("Fork erro\nr");
+			perror("Fork error\n");
 			exit(EXIT_FAILURE);
 		} else if (userpid == 0){
 			printf("New child process launched.\n");
