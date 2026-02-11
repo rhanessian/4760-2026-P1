@@ -83,7 +83,9 @@ int main (int argc, char *argv[]){
             continue;
         }
 		userpid = fork();
-		if (userpid == 0){
+		pid_t parentpid = getppid();
+		printf("Fork PID = %d, Parent PID = %d\n", userpid, parentpid);
+			if (userpid == 0){
 			printf("New child process launched.\n");
             char *newargv[3];
             char iterBuf[20];
